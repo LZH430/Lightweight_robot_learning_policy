@@ -1,8 +1,8 @@
 # Lightweight Robot Learning Policy
 
-Description: **Lightweight learning policy training for G1 + Dex1 (16dof) and IsaacSim deployment (Cylinder pick & place task)**。
+Description: **Lightweight learning policy training for G1 + Dex1 (16dof) and IsaacSim deployment (Cylinder pick & place task)**
 
-当前算法是：**真实示范动作监督 + WMA 未来特征蒸馏**。纯动作基线不使用未来分支；其余四种模型比较门控和自适应蒸馏的作用。本仓库不是另一个 `student_policy_6dof` 仓库的 Z1 7 维纯教师蒸馏版本，配置、缓存和 checkpoint 不应混用。
+Algorithm: **Real action supervision + WMA future feature distillation**。纯动作基线不使用未来分支；其余四种模型比较门控和自适应蒸馏的作用。本仓库不是另一个 `student_policy_6dof` 仓库的 Z1 7 维纯教师蒸馏版本，配置、缓存和 checkpoint 不应混用。
 
 Python 导入包名为 `lightweight_policy`，安装项目名暂保留 `unifolm-student-policy`。以下命令均从本仓库根目录执行。
 
