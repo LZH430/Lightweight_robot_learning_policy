@@ -20,7 +20,7 @@ Adaptive distillation model:
 
 Python 导入包名为 `lightweight_policy`，安装项目名暂保留 `unifolm-student-policy`。以下命令均从本仓库根目录执行。
 
-## 1. 工作流程
+## 1. Data Processing 
 
 ```text
 G1 示范数据 → 转换为 WMA 格式 → 按 episode 划分 train / val
@@ -34,7 +34,7 @@ G1 示范数据 → 转换为 WMA 格式 → 按 episode 划分 train / val
 - 缓存训练不加载完整 WMA；教师导出需要完整模型。
 - 部署需要学生 checkpoint、冻结编码器、任务文本、动作 schema 和原归一化统计，并非只需学生 checkpoint。
 
-## 2. 环境
+## 2. Environment Installation
 
 ### 学生训练
 
@@ -103,7 +103,7 @@ python -m lightweight_policy.export_cache --config configs/export.json
 
 学生动态分支使用与教师目标一致的动作条件训练。真实未来特征只用于训练目标或可靠性评估，不作为部署时输入。
 
-## 4. 模型和训练命令
+## 4. Training
 
 | 配置 | 启动模块 | 真实动作监督 | 未来蒸馏 | 门控 | 自适应 |
 |---|---|---|---|---|---|
@@ -155,7 +155,7 @@ python -m lightweight_policy.train_dynamics \
 
 比较模型时固定验证缓存，并区分最佳单轮、最后若干轮均值和多随机种子结果。离线 MSE 不等于任务成功率。
 
-## 6. Isaac Lab 部署与统计
+## 6. Deployment
 
 详细说明见 [ISAAC_DEPLOY.md](ISAAC_DEPLOY.md)。
 
