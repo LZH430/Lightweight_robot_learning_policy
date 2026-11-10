@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "unifolm-student-policy"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = ["torch>=2.3,<3"]
+
+# Direct dependencies of the export adapter only. The original teacher
+# repository and its complete compatible environment are still required.
+[project.optional-dependencies]
+export = ["numpy>=1.24,<2", "omegaconf==2.3.0"]
+
+[tool.setuptools.packages.find]
+where = ["src", "."]
+include = ["lightweight_policy*", "deployment_script*", "scripts*"]
+namespaces = false

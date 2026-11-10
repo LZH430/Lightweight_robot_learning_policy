@@ -1,0 +1,42 @@
+[2026-10-20T16:44:23] import_pinocchio_before_isaac
+[2026-10-20T16:44:23] launch_isaac
+[INFO][AppLauncher]: Using device: cuda:0
+[INFO][AppLauncher]: Loading experience file: /home/lzh/IsaacLab/apps/isaaclab.python.rendering.kit
+Loading user config located at: '/home/lzh/miniconda3/envs/unitree_sim_env/lib/python3.11/site-packages/isaacsim/kit/data/Kit/Isaac-Sim/5.1/user.config.json'
+[Info] [carb] Logging to file: /home/lzh/miniconda3/envs/unitree_sim_env/lib/python3.11/site-packages/isaacsim/kit/logs/Kit/Isaac-Sim/5.1/kit_20261020_164423.log
+
+|---------------------------------------------------------------------------------------------|
+| Driver Version: 570.211.01    | Graphics API: Vulkan
+|=============================================================================================|
+| GPU | Name                             | Active | LDA | GPU Memory | Vendor-ID | LUID       |
+|     |                                  |        |     |            | Device-ID | UUID       |
+|     |                                  |        |     |            | Bus-ID    |            |
+|---------------------------------------------------------------------------------------------|
+| 0   | NVIDIA GeForce RTX 4090 D        | Yes: 0 |     | 24564   MB | 10de      | 0          |
+|     |                                  |        |     |            | 2685      | 0f7fb0c9.. |
+|     |                                  |        |     |            | 1         |            |
+|=============================================================================================|
+| OS: 22.04.5 LTS (Jammy Jellyfish) ubuntu, Version: 22.04.5, Kernel: 6.8.0-138-generic
+| XServer Vendor: The X.Org Foundation, XServer Version: 12101004 (1.21.1.4)
+| Processor: Intel(R) Core(TM) i9-14900KF
+| Cores: 24 | Logical Cores: 32
+|---------------------------------------------------------------------------------------------|
+| Total Memory (MB): 64084 | Free Memory: 55127
+| Total Page/Swap (MB): 2047 | Free Page/Swap: 2047
+|---------------------------------------------------------------------------------------------|
+2026-10-20T08:44:24Z [564ms] [Warning] [gpu.foundation.plugin] CPU performance profile is set to powersave. This profile sets the CPU to the lowest frequency reducing performance.
+2026-10-20T08:44:24Z [574ms] [Warning] [gpu.foundation.plugin] IOMMU is enabled.
+2026-10-20T08:44:24Z [1,327ms] [Warning] [omni.log] Source: omni.hydra was already registered.
+2026-10-20T08:44:25Z [1,460ms] [Warning] [carb] Acquiring non optional plugin interface which is not listed as dependency: [omni::physx::IPhysxBenchmarks v1.0] (plugin: <default plugin>), by client: omni.physics.physx.plugin. Add it to CARB_PLUGIN_IMPL_DEPS() macro of a client.
+2026-10-20T08:44:25Z [1,506ms] [Warning] [omni.isaac.dynamic_control] omni.isaac.dynamic_control is deprecated as of Isaac Sim 4.5. No action is needed from end-users.
+2026-10-20T08:44:26Z [3,182ms] [Warning] [pxr.Semantics] pxr.Semantics is deprecated - please use Semantics instead
+2026-10-20T08:44:26Z [3,363ms] [Warning] [omni.graph.core.plugin] Found duplicate of category 'Replicator' - was 'Annotators', adding 'Fabric Reader'
+2026-10-20T08:44:26Z [3,363ms] [Warning] [omni.graph.core.plugin] Category 'Replicator' not accepted on node type 'omni.replicator.core.FabricReader' in extension 'omni.replicator.core'
+2026-10-20T08:44:26Z [3,364ms] [Warning] [omni.replicator.core.scripts.extension] No material configuration file, adding configuration to material settings directly.
+2026-10-20T08:44:28Z [4,530ms] [Warning] [omni.fabric.plugin] Warning: attribute viewPickingId not found for bucket id 9
+
+[2026-10-20T16:44:30] import_simulator_dependencies
+[DDSManager] DDS system initialized
+[DDSManager] DDSManager initialized
+[MultiImageWriter] Initialized with separate SHM per image
+[2026-10-20T16:44:30] load_student_and_encoders

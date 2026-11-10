@@ -1,0 +1,106 @@
+{
+  "checkpoint": "/home/lzh/unifolm_student_policy/runs/distillation_baseline_model/best.ckpt",
+  "export_config": "configs/export.json",
+  "dataset_name": "G1_Dex1_PickPlaceCylinder_Dataset_Sim",
+  "instruction": "Pick up the red cup on the table.",
+  "device": "cuda:0",
+  "port": 8765,
+  "settling_seconds": 0.5,
+  "object_spawn_height": 0.84,
+  "require_upright_start": true,
+  "object_reset_pose_range": {
+    "x": [
+      0.0,
+      0.0
+    ],
+    "y": [
+      0.0,
+      0.0
+    ]
+  },
+  "object_reset_reference": "baseline fixed XY (-0.35,0.40) m with zero offsets; enabled environment_perturbations.position overrides these baseline reset ranges",
+  "max_initial_object_tilt_degrees": 2.0,
+  "max_initial_object_xy_displacement": 0.002,
+  "max_initial_object_linear_speed": 0.05,
+  "gripper_calibration": "dataset_v1",
+  "environment_perturbations": {
+    "enabled": false,
+    "seed": null,
+    "position": {
+      "enabled": true,
+      "x": [
+        -0.02,
+        0.02
+      ],
+      "y": [
+        -0.02,
+        0.02
+      ]
+    },
+    "mass": {
+      "enabled": true,
+      "scale_range": [
+        0.9,
+        1.1
+      ]
+    },
+    "friction": {
+      "enabled": true,
+      "scale_range": [
+        0.9,
+        1.1
+      ]
+    },
+    "force_pulses": {
+      "enabled": true,
+      "force_range_newtons": [
+        0.1,
+        0.3
+      ],
+      "duration_seconds": [
+        0.08,
+        0.12
+      ],
+      "interval_seconds": [
+        3.0,
+        5.0
+      ],
+      "start_seconds": 2.0
+    }
+  },
+  "initial_state": [
+    0.07517775893211365,
+    0.00422612763941288,
+    -0.010093705728650093,
+    -0.5478652119636536,
+    -0.20807437598705292,
+    -0.1406366378068924,
+    -0.11720961332321167,
+    -0.028333943337202072,
+    0.057545680552721024,
+    0.03857153281569481,
+    -0.1481509804725647,
+    -0.018929682672023773,
+    -0.021148886531591415,
+    -0.01329898927360773,
+    5.3658876574039445,
+    0.617462680339813
+  ],
+  "initial_arm_target": [
+    0.01332998275756836,
+    0.011383730452507734,
+    -0.007814924232661724,
+    -0.5761416926980019,
+    -0.20942903554532677,
+    -0.14381695725023746,
+    -0.11617189610842615,
+    -0.09088954702019691,
+    0.04962020553648472,
+    0.038807386546977796,
+    -0.1772785522043705,
+    -0.021227555815130472,
+    -0.022837293799966574,
+    -0.014204988547135144
+  ],
+  "initial_state_reference": "165911 measured precontact state at0.466666667s, open left gripper; static arm holds use source initial hold-minus-state offset; not moving action replay"
+}

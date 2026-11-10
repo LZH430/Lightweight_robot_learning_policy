@@ -1,0 +1,26 @@
+{
+  "seed": 42,
+  "device": "cuda",
+  "train_cache": "cache/cylinder_wma_dynamics_16d_64clips/train",
+  "val_cache": "cache/cylinder_wma_dynamics_16d_64clips/val",
+  "output": "runs/action_only_baseline_model",
+  "batch_size": 4,
+  "epochs": 100,
+  "lr": 5e-05,
+  "teacher_weight": 0,
+  "model": {
+    "visual_dim": 1280,
+    "text_dim": 1024,
+    "state_dim": 16,
+    "action_dim": 16,
+    "horizon": 16,
+    "tokens": 64,
+    "obs_steps": 2,
+    "width": 256,
+    "layers": 4,
+    "heads": 8,
+    "future": false
+  },
+  "implementation": "action_only_v1",
+  "stage": "joint"
+}

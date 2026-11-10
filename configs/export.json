@@ -1,0 +1,78 @@
+{
+  "seed": 42,
+  "output": "cache/cylinder_wma_dynamics_16d_64clips",
+  "clips_per_episode": 1,
+  "export_teacher_actions": false,
+  "teacher": {
+    "repo": "/home/lzh/unifolm-world-model-action",
+    "model_config": "/home/lzh/unifolm-world-model-action/configs/train/config.yaml",
+    "checkpoint": "/home/lzh/unifolm_wma_dual.ckpt",
+    "state_dict_prefix": "",
+    "ddim_steps": 16,
+    "device": "cuda:0",
+    "image_batch_size": 1,
+    "enable_dynamics": true
+  },
+  "datasets": {
+    "train": [
+      {
+        "meta_path": "data/splits/unitree_g1_pickplace_cylinder_train.csv",
+        "data_dir": "/home/lzh/data",
+        "dataset_name": "G1_Dex1_PickPlaceCylinder_Dataset_Sim",
+        "transition_dir": "/home/lzh/data/transitions",
+        "video_length": 16,
+        "resolution": [
+          320,
+          512
+        ],
+        "crop_resolution": [
+          320,
+          512
+        ],
+        "spatial_transform": "resize_center_crop",
+        "frame_stride": 2,
+        "load_raw_resolution": true,
+        "random_fs": false,
+        "individual_normalization": true,
+        "normalization_mode": "min_max",
+        "n_obs_steps": 2,
+        "max_action_dim": 16,
+        "max_state_dim": 16
+      }
+    ],
+    "val": [
+      {
+        "meta_path": "data/splits/unitree_g1_pickplace_cylinder_val.csv",
+        "data_dir": "/home/lzh/data",
+        "dataset_name": "G1_Dex1_PickPlaceCylinder_Dataset_Sim",
+        "transition_dir": "/home/lzh/data/transitions",
+        "video_length": 16,
+        "resolution": [
+          320,
+          512
+        ],
+        "crop_resolution": [
+          320,
+          512
+        ],
+        "spatial_transform": "resize_center_crop",
+        "frame_stride": 2,
+        "load_raw_resolution": true,
+        "random_fs": false,
+        "individual_normalization": true,
+        "normalization_mode": "min_max",
+        "n_obs_steps": 2,
+        "max_action_dim": 16,
+        "max_state_dim": 16
+      }
+    ]
+  },
+  "schema_sources": {
+    "G1_Dex1_PickPlaceCylinder_Dataset_Sim": "/home/lzh/G1_Dex1_PickPlaceCylinder_Dataset_Sim/meta/info.json"
+  },
+  "feature_backend": "base_encoders",
+  "clips_per_split": {
+    "train": 64,
+    "val": 4
+  }
+}
