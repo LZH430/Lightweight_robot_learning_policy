@@ -4,6 +4,8 @@ Description: **Lightweight learning policy training for G1 + Dex1 (16dof) and Is
 
 Algorithm: **Real action supervision + WMA future feature distillation**. 
 
+Technical configuration: we use Nvidia 4090 24GB to train it.
+
 ***Three main models***:
 
 Action-only baseline model (See `action_only_baseline.json`): This model does not use WMA future prediction. 
@@ -76,35 +78,18 @@ python -m lightweight_policy.data_split \
 ```
 Note: Currently, we set 64 training datasets and 4 verification datasets. 
 
-
-
-
-当前配置是 train=64、val=4，每个条目分别采样相应数量的窗口。数据较多时导出量会很大；先小规模测量时间与显存。随机窗口可能重叠，不保证全部独立。
+## 3. Pre-training
 
 ```bash
 python -m lightweight_policy.action_schema --config configs/export.json
 python -m lightweight_policy.export_cache --config configs/export.json
 ```
 
-导出目录必须为空，避免混合缓存版本。当前配置开启 `teacher.enable_dynamics=true`，关闭 `export_teacher_actions`：教师提供未来特征目标，动作标签仍来自示范数据。
-
-典型单样本字段：
-
-| 字段 | 形状/含义 |
-|---|---|
-| visual | [2, 64, 1280]，当前两帧视觉特征 |
-| text | [1024]，文本特征 |
-| state | [16]，当前归一化状态 |
-| action / action_mask | [16, 16]，真实动作及有效维度 |
-| future | [64, 1280]，真实未来图像特征 |
-| teacher_future | 教师预测的未来特征 |
-| dynamics_action | 生成教师未来目标时使用的动作条件 |
-| dynamics_fs / dynamics_fs_type | 时间条件 |
-
-学生动态分支使用与教师目标一致的动作条件训练。真实未来特征只用于训练目标或可靠性评估，不作为部署时输入。
+Note: Currently, we set 64 training datasets and 4 verification datasets. So, it will spend some times
 
 ## 4. Training
 
+Currently, we use the model which contains dynamic distillation and gated future functions.
 | 配置 | 启动模块 | 真实动作监督 | 未来蒸馏 | 门控 | 自适应 |
 |---|---|---|---|---|---|
 | action_only_baseline.json | lightweight_policy.train | 是 | 否 | 否 | 否 |
@@ -116,6 +101,7 @@ python -m lightweight_policy.export_cache --config configs/export.json
 **当前配置注意事项：** `adaptive_distillation.json` 和 `gated_future.json` 的 output 都指向 `runs/wma_gated_future_64clips`。启动对照实验前，为其中一个设置独立目录，例如 `runs/wma_adaptive_distillation_64clips`。不要根据这个旧目录名判断模型种类；以配置内容为准。本次文档整理未移动已有结果或修改实验配置。
 
 ```bash
+conda activate lightweight_model
 python -m lightweight_policy.train --config configs/action_only_baseline.json
 python -m lightweight_policy.train_dynamics --config configs/distillation_baseline.json
 python -m lightweight_policy.train_dynamics --config configs/gated_future.json
