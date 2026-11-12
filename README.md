@@ -6,33 +6,35 @@ Algorithm: **Real action supervision + WMA future feature distillation**.
 
 ***Three main models***:
 
-Action-only baseline model (See `action_only_baseline.json`): 
+Action-only baseline model (See `action_only_baseline.json`): This model does not use WMA future prediction. 
 
-Distillation baseline model (See `distillation_baseline.json`): 
+Distillation baseline model (See `distillation_baseline.json`): This model uses WMA distillation with constant distillated ratio and does not have future gated function.
 
-Adaptive gated model (See `adaptive_gated.json`):纯动作基线不使用未来分支；其余四种模型比较门控和自适应蒸馏的作用。
+Adaptive gated model (See `adaptive_gated.json`): This model has both dynamic distillation ratio and future gated function.
 
 ***Two external models***:
 
-Gated model (See `gated_future.json`):
+Gated model (See `gated_future.json`): This model has future gated function without dynamic distillation function.
 
-Adaptive distillation model (See `adaptive_distillation.json`): 
+Adaptive distillation model (See `adaptive_distillation.json`): This model has dynamic distillation function but does not have future gated function.
 
-Python 导入包名为 `lightweight_policy`，安装项目名暂保留 `unifolm-student-policy`。以下命令均从本仓库根目录执行。
+## 2. Environment Installation
 
-## 1. Data Processing 
+# Teacher Model Running Environment Installation
 
-```text
-G1 示范数据 → 转换为 WMA 格式 → 按 episode 划分 train / val
-    → 冻结 WMA 导出当前特征、真实动作、真实未来特征、教师未来特征
-    → 学生训练 → 验证并保存 best.ckpt / last.ckpt
-    → Isaac Lab 闭环执行 → 视频、轨迹和篮子进入率统计
+```bash
+conda create -n unifolm-student python=3.10 pip -y
+conda activate unifolm-student
+python -m pip install -e .
+python -m pip check
+python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda.is_available())"
 ```
 
-- 当前状态和动作宽度均为 16：双臂各 7 个关节，加左右夹爪。
-- 动作预测长度 horizon=16，表示一次输出 16 个时间步，不是机器人自由度。
-- 缓存训练不加载完整 WMA；教师导出需要完整模型。
-- 部署需要学生 checkpoint、冻结编码器、任务文本、动作 schema 和原归一化统计，并非只需学生 checkpoint。
+## 2. Data Processing 
+
+- Degree of freedom 16: Robotic arms (7 joints) + left gripper + right gripper.
+
+
 
 ## 2. Environment Installation
 
