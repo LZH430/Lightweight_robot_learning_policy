@@ -49,9 +49,16 @@ python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda
 ## 2. Data Processing 
 
 - Degree of freedom 16: Robotic arms (7 joints) + left gripper + right gripper.
-
-
-
+```bash
+conda activate teacher_model
+cd unifolm-world-model-action
+cd prepare_data
+python prepare_training_data.py \
+    --source_dir /path/to/your/source_dir \
+    --target_dir /path/to/save/the/converted/data \
+    --dataset_name "dataset1_name" \
+    --robot_name "a tag of the robot in the dataset"
+```
 ## 2. Environment Installation
 
 ### 学生训练
