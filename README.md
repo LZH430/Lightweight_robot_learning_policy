@@ -6,17 +6,17 @@ Algorithm: **Real action supervision + WMA future feature distillation**.
 
 ***Three main models***:
 
-Action-only baseline model:
+Action-only baseline model (See `action_only_baseline.json`): 
 
-Distillation baseline model:
+Distillation baseline model (See `distillation_baseline.json`): 
 
-Adaptive gated model:纯动作基线不使用未来分支；其余四种模型比较门控和自适应蒸馏的作用。
+Adaptive gated model (See `adaptive_gated.json`):纯动作基线不使用未来分支；其余四种模型比较门控和自适应蒸馏的作用。
 
 ***Two external models***:
 
-Gated model:
+Gated model (See `gated_future.json`):
 
-Adaptive distillation model: 
+Adaptive distillation model (See `adaptive_distillation.json`): 
 
 Python 导入包名为 `lightweight_policy`，安装项目名暂保留 `unifolm-student-policy`。以下命令均从本仓库根目录执行。
 
