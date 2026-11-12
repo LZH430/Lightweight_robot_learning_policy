@@ -20,6 +20,14 @@ Gated model (See `gated_future.json`): This model has future gated function with
 
 Adaptive distillation model (See `adaptive_distillation.json`): This model has dynamic distillation function but does not have future gated function.
 
+| Model | Running | Real action supervision | Future distillation | Gated function | Adaptive |
+|---|---|---|---|---|---|
+| action_only_baseline.json | lightweight_policy.train | Yes | No | No | No |
+| distillation_baseline.json | lightweight_policy.train_dynamics | Yes | Yes | No | No |
+| gated_future.json | lightweight_policy.train_dynamics | Yes | Yes | Yes | No |
+| adaptive_distillation.json | lightweight_policy.train_dynamics | Yes | Yes | No | Yes |
+| adaptive_gated.json | lightweight_policy.train_dynamics | Yes | Yes | Yes | Yes |
+
 ## 1. Environment Installation
 
 # Teacher Model Running Environment Installation
