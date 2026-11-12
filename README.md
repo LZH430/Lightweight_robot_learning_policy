@@ -65,53 +65,19 @@ python prepare_training_data.py \
 
 Second step: If the dataset includes multiple views, keep main-view camera's values from the `data_dir` column in the CSV file.
 
-Third step: 
-
-
-## 2. Environment Installation
-
-### 学生训练
+Third step: Generate corresponded data format to prepare training.
 
 ```bash
-conda create -n unifolm-student python=3.10 pip -y
-conda activate unifolm-student
-python -m pip install -e .
-python -m pip check
-python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda.is_available())"
-```
-
-GPU 训练需要与本机驱动兼容的 CUDA 版 PyTorch。当前 pyproject 的核心依赖为 PyTorch；不要将成功安装包等同于全部导出、仿真依赖已安装。
-
-### 教师导出与仿真
-
-- **导出环境**：需要原 WMA 仓库及其编码器、采样器、数据加载器依赖；同时安装本仓库。
-- **Isaac Lab 环境**：需要已能启动的 Unitree 仿真场景，以及冻结编码器使用的推理依赖。
-- 不要将教师环境的整套依赖版本直接覆盖到 Isaac 环境，尤其是 PyTorch/CUDA。
-- 源码包名已变更，已有环境请重新执行 `python -m pip install -e .`。不要在同一环境混装另一个包含同名包的工作副本。
-
-## 3. 数据准备和缓存导出
-
-先将 LeRobot 原始数据转换为原 WMA 数据加载器要求的 CSV、视频、transition 文件及统计量。以下划分命令接收的是**转换后的 CSV**：
-
-```bash
+git clone --recurse-submodules https://github.com/LZH430/Lightweight_robot_learning_policy.git
 python -m lightweight_policy.data_split \
   --csv /PATH/TO/CONVERTED_G1.csv \
   --output data/splits \
   --dataset-name unitree_g1_pickplace_cylinder
 ```
+Note: Currently, we set 64 training datasets and 4 verification datasets. 
 
-按完整 episode 划分，避免同一轨迹或不同相机视角跨训练/验证集合。已正确划分的数据可复用。
 
-编辑 [configs/export.json](configs/export.json)：
 
-| 字段 | 用途 |
-|---|---|
-| teacher.repo / model_config / checkpoint | WMA 代码、结构配置与权重 |
-| datasets.train / val 的 meta_path | 训练、验证 CSV |
-| data_dir / transition_dir | 转换数据根目录、统计量目录 |
-| schema_sources | 原始数据 meta/info.json，用于检查动作名称与顺序 |
-| output | 输出缓存目录，必须与训练配置的 train_cache / val_cache 对应 |
-| clips_per_split | 每个数据条目的 clip 数量，不是整个划分的总量 |
 
 当前配置是 train=64、val=4，每个条目分别采样相应数量的窗口。数据较多时导出量会很大；先小规模测量时间与显存。随机窗口可能重叠，不保证全部独立。
 
