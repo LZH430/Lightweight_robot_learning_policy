@@ -18,11 +18,23 @@ Gated model (See `gated_future.json`): This model has future gated function with
 
 Adaptive distillation model (See `adaptive_distillation.json`): This model has dynamic distillation function but does not have future gated function.
 
-## 2. Environment Installation
+## 1. Environment Installation
 
 # Teacher Model Running Environment Installation
 
-
+```bash
+conda create -n teacher_model python==3.10.18
+conda activate teacher_model
+conda install pinocchio=3.2.0 -c conda-forge -y
+conda install ffmpeg=7.1.1 -c conda-forge
+# Cloning the repo [Unitree UnifoLM-WMA-0 (https://github.com/unitreerobotics/unifolm-world-model-action)]:
+git clone --recurse-submodules https://github.com/unitreerobotics/unifolm-world-model-action.git
+cd unifolm-world-model-action
+git submodule update --init --recursive
+pip install -e .
+cd external/dlimp
+pip install -e .
+```
 
 # Student Model Running Environment Installation
 
