@@ -22,9 +22,13 @@ Adaptive distillation model (See `adaptive_distillation.json`): This model has d
 
 # Teacher Model Running Environment Installation
 
+
+
+# Student Model Running Environment Installation
+
 ```bash
-conda create -n unifolm-student python=3.10 pip -y
-conda activate unifolm-student
+conda create -n lightweight_model python=3.10 pip -y
+conda activate lightweight_model
 python -m pip install -e .
 python -m pip check
 python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda.is_available())"
