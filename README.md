@@ -57,8 +57,9 @@ python prepare_training_data.py \
     --source_dir /path/to/your/source_dir \
     --target_dir /path/to/save/the/converted/data \
     --dataset_name "dataset1_name" \
-    --robot_name "a tag of the robot in the dataset"
+    --robot_name "Unitree G1 Robot with Gripper"
 ```
+
 ## 2. Environment Installation
 
 ### 学生训练
