@@ -49,6 +49,9 @@ python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda
 ## 2. Data Processing 
 
 - Degree of freedom 16: Robotic arms (7 joints) + left gripper + right gripper.
+
+First step: using `prepare_training_data.py` in Unitree UnifoLM-WMA-0 (https://github.com/unitreerobotics/unifolm-world-model-action) to convert data format.
+
 ```bash
 conda activate teacher_model
 cd unifolm-world-model-action
@@ -59,6 +62,11 @@ python prepare_training_data.py \
     --dataset_name "dataset1_name" \
     --robot_name "Unitree G1 Robot with Gripper"
 ```
+
+Second step: If the dataset includes multiple views, keep main-view camera's values from the `data_dir` column in the CSV file.
+
+Third step: 
+
 
 ## 2. Environment Installation
 
