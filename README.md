@@ -30,7 +30,7 @@ Adaptive distillation model (See `adaptive_distillation.json`): This model has d
 
 ## 1. Environment Installation
 
-# Teacher Model Running Environment Installation
+### Teacher Model Running Environment Installation
 
 ```bash
 conda create -n teacher_model python==3.10.18
@@ -46,7 +46,7 @@ cd external/dlimp
 pip install -e .
 ```
 
-# Student Model Running Environment Installation
+### Student Model Running Environment Installation
 
 ```bash
 conda create -n lightweight_model python=3.10 pip -y
