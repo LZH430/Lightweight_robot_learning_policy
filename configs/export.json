@@ -4,9 +4,9 @@
   "clips_per_episode": 1,
   "export_teacher_actions": false,
   "teacher": {
-    "repo": "/home/lzh/unifolm-world-model-action",
-    "model_config": "/home/lzh/unifolm-world-model-action/configs/train/config.yaml",
-    "checkpoint": "The path of your base checkpoint",
+    "repo": "/your path /unifolm-world-model-action",
+    "model_config": "/your path /unifolm-world-model-action/configs/train/config.yaml",
+    "checkpoint": "The path of base checkpoint",
     "state_dict_prefix": "",
     "ddim_steps": 16,
     "device": "cuda:0",
@@ -17,9 +17,9 @@
     "train": [
       {
         "meta_path": "data/splits/unitree_g1_pickplace_cylinder_train.csv",
-        "data_dir": "/home/lzh/data",
+        "data_dir": "/your path/data",
         "dataset_name": "G1_Dex1_PickPlaceCylinder_Dataset_Sim",
-        "transition_dir": "/home/lzh/data/transitions",
+        "transition_dir": "/your path /data/transitions",
         "video_length": 16,
         "resolution": [
           320,
@@ -43,9 +43,9 @@
     "val": [
       {
         "meta_path": "data/splits/unitree_g1_pickplace_cylinder_val.csv",
-        "data_dir": "/home/lzh/data",
+        "data_dir": "/your path/data",
         "dataset_name": "G1_Dex1_PickPlaceCylinder_Dataset_Sim",
-        "transition_dir": "/home/lzh/data/transitions",
+        "transition_dir": "/your path/data/transitions",
         "video_length": 16,
         "resolution": [
           320,
@@ -68,7 +68,7 @@
     ]
   },
   "schema_sources": {
-    "G1_Dex1_PickPlaceCylinder_Dataset_Sim": "/home/lzh/G1_Dex1_PickPlaceCylinder_Dataset_Sim/meta/info.json"
+    "G1_Dex1_PickPlaceCylinder_Dataset_Sim": "/your path /G1_Dex1_PickPlaceCylinder_Dataset_Sim/meta/info.json"
   },
   "feature_backend": "base_encoders",
   "clips_per_split": {
