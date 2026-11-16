@@ -131,9 +131,11 @@ python -m lightweight_policy.train_dynamics --config configs/gated_future.json
 python -m lightweight_policy.train_dynamics --config configs/adaptive_distillation.json
 ```
 
+The output package contains two checkpoints. One is best.ckpt and another one is last.ckpt.
+
 ## 4. Finetune training
 
-
+First step: 
 
 
 固定蒸馏使用示范动作损失、初始动作损失和教师未来特征损失。自适应权重根据教师未来特征与真实未来特征的误差计算；门控调节预测未来信息参与动作融合的程度。它们分别控制“如何学习教师”和“如何使用未来信息”。
