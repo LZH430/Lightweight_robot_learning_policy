@@ -89,9 +89,9 @@ python prepare_training_data.py \
     --robot_name "Unitree G1 Robot with Gripper"
 ```
 
-Second step: If the dataset includes multiple views, keep main-view camera's values from the `data_dir` column in the CSV file.
+Third step: If the dataset includes multiple views, keep main-view camera's values from the `data_dir` column in the CSV file.
 
-Third step: Generate corresponded data format to prepare training.
+Fourth step: Generate corresponded data format to prepare training.
 
 ```bash
 git clone --recurse-submodules https://github.com/LZH430/Lightweight_robot_learning_policy.git
@@ -113,19 +113,9 @@ Note: Currently, we set 64 training datasets and 4 verification datasets. So, it
 
 ## 4. Training
 
-Currently, we use the model which contains dynamic distillation and gated future functions.
+In our test, we use the model which contains dynamic distillation and gated future functions.
 
-First step: fill 
-
-Second step: run:
-
-```bash
-conda activate lightweight_model
-python -m lightweight_policy.train_dynamics --config configs/adaptive_gated.json
-```
-
-
-**当前配置注意事项：** `adaptive_distillation.json` 和 `gated_future.json` 的 output 都指向 `runs/wma_gated_future_64clips`。启动对照实验前，为其中一个设置独立目录，例如 `runs/wma_adaptive_distillation_64clips`。不要根据这个旧目录名判断模型种类；以配置内容为准。本次文档整理未移动已有结果或修改实验配置。
+First step: running the following code to generate 1st version checkpoint. 
 
 ```bash
 conda activate lightweight_model
@@ -140,6 +130,11 @@ python -m lightweight_policy.train_dynamics --config configs/distillation_baseli
 python -m lightweight_policy.train_dynamics --config configs/gated_future.json
 python -m lightweight_policy.train_dynamics --config configs/adaptive_distillation.json
 ```
+
+## 4. Finetune training
+
+
+
 
 固定蒸馏使用示范动作损失、初始动作损失和教师未来特征损失。自适应权重根据教师未来特征与真实未来特征的误差计算；门控调节预测未来信息参与动作融合的程度。它们分别控制“如何学习教师”和“如何使用未来信息”。
 
