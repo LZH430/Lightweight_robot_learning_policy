@@ -6,7 +6,7 @@
   "teacher": {
     "repo": "/home/lzh/unifolm-world-model-action",
     "model_config": "/home/lzh/unifolm-world-model-action/configs/train/config.yaml",
-    "checkpoint": "/home/lzh/unifolm_wma_dual.ckpt",
+    "checkpoint": "The path of your base checkpoint",
     "state_dict_prefix": "",
     "ddim_steps": 16,
     "device": "cuda:0",
