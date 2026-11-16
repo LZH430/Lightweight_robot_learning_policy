@@ -135,28 +135,15 @@ The output package contains two checkpoints. One is best.ckpt and another one is
 
 ## 4. Finetune training
 
-First step: 
+This step is going to increase success rate in deployment stage. The finetune process focus on gripper opening and closing processes.
 
-
-固定蒸馏使用示范动作损失、初始动作损失和教师未来特征损失。自适应权重根据教师未来特征与真实未来特征的误差计算；门控调节预测未来信息参与动作融合的程度。它们分别控制“如何学习教师”和“如何使用未来信息”。
-
-`teacher_weight=0` 表示不做旧版动作蒸馏，不能据此判断未来蒸馏关闭。`dynamics_teacher_weight` 才控制当前未来蒸馏；`model.future=false` 关闭的是旧观察条件未来分支，`dynamics_v2` 有自己的动作条件动态分支。旧 `train_adaptive.py` 不是上表配置的入口。
-
-### 续训与微调
-
-每个输出目录包含 `metrics.jsonl`、`best.ckpt` 和 `last.ckpt`。
+Running the following code to do finetune work:
 
 ```bash
-python -m lightweight_policy.train_dynamics \
-  --config configs/adaptive_gated.json \
-  --resume /PATH/TO/last.ckpt
+python -m lightweight_policy.train_dynamics --config configs/adaptive_gated_finetune.json
 ```
 
-`--resume` 恢复模型和优化器等状态，应沿用一致的训练目标。`--init-from` 只加载兼容模型权重，开始新实验；不能用来直接跨越不同模型结构或动作维度。
-
-`adaptive_gated_finetune.json` 是额外的 G1 抓取辅助监督实验，不属于五组基础对照。它通过 `init_from` 读取已有 adaptive_gated checkpoint，并使用 control_score 选模，应单独报告。
-
-## 5. 指标如何理解
+## 5. Training criteria
 
 | 指标 | 含义 |
 |---|---|
