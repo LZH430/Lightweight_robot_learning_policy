@@ -74,6 +74,8 @@ First step: Download base checkpoint and dataset
 |---------|-------|------|
 |metal_part_sort_v5|[Unitree G1](https://www.unitree.com/g1)|[Huggingface](https://huggingface.co/datasets/unitreerobotics/G1_Dex1_PickPlaceCylinder_Dataset_Sim)|
 
+Note: Replace "your path" in export.json with your own path.
+
 Second step: using `prepare_training_data.py` in Unitree UnifoLM-WMA-0 (https://github.com/unitreerobotics/unifolm-world-model-action) to convert data format.
 
 ```bash
