@@ -60,7 +60,7 @@ python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda
 
 - Degree of freedom 16: Robotic arms (7 joints) + left gripper + right gripper.
 
-First step: Download the base checkpoint and dataset
+First step: Download base checkpoint and dataset
 
 - Base checkpoint
 
@@ -70,6 +70,9 @@ First step: Download the base checkpoint and dataset
 
 - Dataset
 
+| Dataset | Robot | Link |
+|---------|-------|------|
+|metal_part_sort_v5|[Unitree G1](https://www.unitree.com/g1)|[Huggingface](https://huggingface.co/datasets/unitreerobotics/G1_Dex1_PickPlaceCylinder_Dataset_Sim)|
 
 Second step: using `prepare_training_data.py` in Unitree UnifoLM-WMA-0 (https://github.com/unitreerobotics/unifolm-world-model-action) to convert data format.
 
