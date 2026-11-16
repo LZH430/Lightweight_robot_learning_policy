@@ -60,7 +60,18 @@ python -c "import torch, lightweight_policy; print(torch.__version__, torch.cuda
 
 - Degree of freedom 16: Robotic arms (7 joints) + left gripper + right gripper.
 
-First step: using `prepare_training_data.py` in Unitree UnifoLM-WMA-0 (https://github.com/unitreerobotics/unifolm-world-model-action) to convert data format.
+First step: Download the base checkpoint and dataset
+
+- Base checkpoint
+
+| Model | Link|
+|---------|------|
+|$\text{UnifoLM-WMA-0}_{Dual}$ | [HuggingFace](https://huggingface.co/unitreerobotics/UnifoLM-WMA-0-Dual)|
+
+- Dataset
+
+
+Second step: using `prepare_training_data.py` in Unitree UnifoLM-WMA-0 (https://github.com/unitreerobotics/unifolm-world-model-action) to convert data format.
 
 ```bash
 conda activate teacher_model
