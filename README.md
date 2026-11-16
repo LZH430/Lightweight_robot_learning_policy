@@ -145,10 +145,10 @@ python -m lightweight_policy.train_dynamics --config configs/adaptive_gated_fine
 
 ## 5. Training criteria
 
-| 指标 | 含义 |
+| Criteria | Meaning |
 |---|---|
-| action_mse | 最终动作与真实示范动作的误差，越低越好 |
-| initial_action_mse | 融合未来信息前的初始动作误差 |
+| action_mse | Error between final predicted actions and real actions |
+| initial_action_mse | Initial action error before fusing future information |
 | dynamics_teacher_mse | 学生未来特征与教师预测的误差，不是真实未来误差 |
 | teacher_future_reliability | 自适应蒸馏权重均值，不是预测准确率 |
 | future_gate | 门值均值，不是“越大越好” |
