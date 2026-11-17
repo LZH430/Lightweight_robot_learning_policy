@@ -199,3 +199,9 @@ If you want to test success rate in perturbations, you need to do following chan
 ```
 ## 7. Environment perturbations setup
 
+| Perturbations | Set | Description |
+|---|---|---|
+| Inital position of cylinder | [-0.01, 0.01] m | X is located randomly from -0.36 to -0.34 and Y is located randomly from 0.39 to 0.41 |
+| Cylinder mass | Original mass times [0.9,1.1] | Cylinder mass is generated randomly between 0.36kg and 0.44 kg based |
+| Cylindrical material friction | Static/dynamic friction multiplied by [0.9,1.1] | efault 1.5 changed to 1.35～1.65 |
+| External force pulse | Random in the horizontal direction, resultant force 0.1～0.3 N | Applied to the center of mass of the cylinder, no vertical force and additional torque |
