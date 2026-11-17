@@ -180,7 +180,7 @@ python deployment_script/run_isaacsim.py \
   --seconds 30 --keep-open
 ```
 
-Fourth step: Multiple-round evaluation and summary
+Fourth step: Multiple-round evaluation and summary (for 50 epochs)
 
 Run
 
@@ -190,9 +190,9 @@ python deployment_script/evaluate_basket.py \
   --config configs/deploy_isaacsim.json \
   --episodes 50 --gui --output runs/deployments/basket_eval_50
 
-python deployment_script/evaluate_basket.py \
-  --summarize runs/deployments/basket_eval_50
 ```
+
+If you want to test success rate in perturbations, you need to change  in [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json)
 
 **当前成功定义是“圆柱任意部分进入篮子内部”，不要求松开、稳定保持或完整放入。** 因而应称为篮子进入率，而不是未经限定的完整放置成功率。初始化异常、有效试验的分母和不同配置分组规则见 ISAAC_DEPLOY.md；不要将所有失败日志一律算作抓取失败。
 
