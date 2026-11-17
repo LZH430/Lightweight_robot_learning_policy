@@ -189,55 +189,13 @@ python deployment_script/evaluate_basket.py \
   --sim-repo /PATH/TO/unitree_sim_isaaclab \
   --config configs/deploy_isaacsim.json \
   --episodes 50 --gui --output runs/deployments/basket_eval_50
-
 ```
 
-If you want to test success rate in perturbations, you need to change  in [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json)
-
-**当前成功定义是“圆柱任意部分进入篮子内部”，不要求松开、稳定保持或完整放入。** 因而应称为篮子进入率，而不是未经限定的完整放置成功率。初始化异常、有效试验的分母和不同配置分组规则见 ISAAC_DEPLOY.md；不要将所有失败日志一律算作抓取失败。
-
-夹爪校准见 [GRIPPER_CALIBRATION.md](GRIPPER_CALIBRATION.md)，环境扰动见 [ENVIRONMENT_PERTURBATIONS.md](ENVIRONMENT_PERTURBATIONS.md)。实际部署性能需由本机记录验证，文档命令不是成功率结果。
-
-## 7. tests 与 deployment_script 的区别
-
-`deployment_script` 实现实际推理、控制和统计；`tests` 用已知输入验证这些逻辑是否正确。测试不是重复部署，也不在普通训练时自动运行。
-
-| 测试文件 | 检查内容 |
-|---|---|
-| test_gripper_finetune.py | G1 辅助损失、有效维度和梯度 |
-| test_gripper_calibration.py | 夹爪映射与校准 |
-| test_environment_perturbations.py | 环境扰动逻辑 |
-| test_basket_intersection.py | 圆柱/篮子几何相交 |
-| test_basket_reporting.py | 结果汇总、分组、异常和重复统计 |
-
-安装本仓库且环境具备 PyTorch、NumPy 后：
+If you want to test success rate in perturbations, you need to do following changes in [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json)
 
 ```bash
-python -m unittest discover -s tests -p "test_*.py"
+  "environment_perturbations": {
+    "enabled": true,
 ```
+## 7. Environment perturbations setup
 
-测试主要使用合成数据和模拟运行结果，不需要真实机器人，不能替代 Isaac 场景和真实 checkpoint 的闭环验证。
-
-## 8. 目录导航
-
-```text
-configs/                    数据导出、训练及部署配置
-data/splits/                按 episode 划分的 CSV
-src/lightweight_policy/
-  action_schema.py          动作/状态 schema 验证
-  data_split.py             数据划分
-  teacher.py                原 WMA 模型加载和采样
-  base_encoders.py           编码器与动作条件未来导出
-  export_cache.py            离线缓存生成
-  model.py / train.py        纯动作基线与缓存读取
-  model_dynamics.py         动作条件未来预测和门控融合
-  train_dynamics.py         动态蒸馏训练
-  gripper_finetune.py        G1 辅助监督与选模评分
-scripts/losses_dynamics.py   当前动态蒸馏损失
-deployment_script/          部署、校准、环境扰动及成功率统计
-tests/                      回归测试
-cache/                      导出的训练/验证缓存
-runs/                       checkpoint、指标和部署结果
-```
-
-根目录中关于旧 student.json、旧 adaptive-data 或历史 26 维实验的说明保留作历史参考；当前入口以本 README 和实际配置为准。
