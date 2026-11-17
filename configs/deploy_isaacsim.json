@@ -1,5 +1,5 @@
 {
-  "checkpoint": "/home/lzh/unifolm_student_policy/runs/distillation_baseline_model/best.ckpt",
+  "checkpoint": "/your path/unifolm_student_policy/runs/distillation_baseline_model/best.ckpt",
   "export_config": "configs/export.json",
   "dataset_name": "G1_Dex1_PickPlaceCylinder_Dataset_Sim",
   "instruction": "Pick up the red cup on the table.",
