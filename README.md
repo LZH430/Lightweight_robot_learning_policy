@@ -149,17 +149,18 @@ python -m lightweight_policy.train_dynamics --config configs/adaptive_gated_fine
 |---|---|
 | action_mse | Error between final predicted actions and real actions |
 | initial_action_mse | Initial action error before fusing future information |
-| dynamics_teacher_mse | 学生未来特征与教师预测的误差，不是真实未来误差 |
-| teacher_future_reliability | 自适应蒸馏权重均值，不是预测准确率 |
-| future_gate | 门值均值，不是“越大越好” |
-| control_score | 微调实验的组合评分，具体组成见配置与 gripper_finetune.py |
-| peak_allocated_gib | PyTorch 分配显存峰值，不是整卡或完整部署显存 |
-
-比较模型时固定验证缓存，并区分最佳单轮、最后若干轮均值和多随机种子结果。离线 MSE 不等于任务成功率。
+| dynamics_teacher_mse | Error between student future characteristics and teacher predictions |
+| teacher_future_reliability | Mean of adaptive distillation weights |
+| future_gate | Mean of gate value |
+| control_score | Combined score of fine-tuning experiments |
+| peak_allocated_gib | Peak value of PyTorch memory allocation |
 
 ## 6. Deployment
 
-详细说明见 [ISAAC_DEPLOY.md](ISAAC_DEPLOY.md)。
+First step:
+
+Install 'unitree_isaac_sim' environment. See: [HuggingFace](https://huggingface.co/unitreerobotics/UnifoLM-WMA-0-Dual)
+
 
 先填写 [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json) 的 checkpoint、export_config、dataset_name 和 instruction。文本、编码器、归一化及夹爪校准需与训练数据一致。
 
