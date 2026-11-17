@@ -165,9 +165,7 @@ Second step:
 
 Enter checkpoint、export_config、dataset_name and instruction in [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json).
 
-Third step:
-
-
+Third step: single-round evaluation and summary
 
 Run
 
@@ -182,9 +180,9 @@ python deployment_script/run_isaacsim.py \
   --seconds 30 --keep-open
 ```
 
+Fourth step: Multiple-round evaluation and summary
 
-
-多轮评估与重新汇总：
+Run
 
 ```bash
 python deployment_script/evaluate_basket.py \
