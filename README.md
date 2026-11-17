@@ -159,23 +159,30 @@ python -m lightweight_policy.train_dynamics --config configs/adaptive_gated_fine
 
 First step:
 
-Install 'unitree_isaac_sim' environment. See: [HuggingFace](https://huggingface.co/unitreerobotics/UnifoLM-WMA-0-Dual)
+Install 'unitree_isaac_sim' required environment. See: [unitree_sim_isaaclab](https://github.com/unitreerobotics/unitree_sim_isaaclab)
+
+Second step:
+
+Enter checkpoint、export_config、dataset_name and instruction in [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json).
+
+Third step:
 
 
-先填写 [configs/deploy_isaacsim.json](configs/deploy_isaacsim.json) 的 checkpoint、export_config、dataset_name 和 instruction。文本、编码器、归一化及夹爪校准需与训练数据一致。
 
-在 Linux 的 Isaac Lab 环境、仓库根目录运行：
+Run
+
+```bash
+conda activate unitree_sim_env
+```
 
 ```bash
 python deployment_script/run_isaacsim.py \
-  --sim-repo /PATH/TO/unitree_sim_isaaclab \
+  --sim-repo /Your/PATH/TO/unitree_sim_isaaclab \
   --config configs/deploy_isaacsim.json \
   --seconds 30 --keep-open
 ```
 
-脚本在同一进程创建场景并调用学生模型，无需额外 HTTP 服务或另开官方 sim_main.py。场景为 `Isaac-PickPlace-Cylinder-G129-Dex1-Joint`。
 
-输出包含视频、轨迹、summary.json 和启动/异常诊断。计时基于仿真时间，录制视频不能用来推断实时推理速度。
 
 多轮评估与重新汇总：
 
